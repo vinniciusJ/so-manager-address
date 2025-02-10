@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 public class CityDTO {
     private Long id;
     private String name;
-    private StateDTO state;
+    private FederalUnitDTO federalUnit;
 }

@@ -1,23 +1,19 @@
 package br.unioeste.esi.so_manager_address.domains.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "city")
+@Table(name = "federal_unit")
 @AllArgsConstructor @NoArgsConstructor
 @Data @Builder
-public class City {
+public class FederalUnit {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    private String abbreviation;
     private String name;
-
-    @ManyToOne
-    @JoinColumn(name = "federal_unit_abbreviation")
-    private FederalUnit federalUnit;
 }

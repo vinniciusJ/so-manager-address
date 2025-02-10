@@ -1,11 +1,12 @@
 package br.unioeste.esi.so_manager_address.controllers;
 
 import br.unioeste.esi.so_manager_address.domains.dto.CityDTO;
+import br.unioeste.esi.so_manager_address.domains.dto.filters.CityFiltersDTO;
 import br.unioeste.esi.so_manager_address.domains.entity.City;
-import br.unioeste.esi.so_manager_address.domains.entity.State;
+import br.unioeste.esi.so_manager_address.domains.entity.FederalUnit;
 import br.unioeste.esi.so_manager_address.mappers.CityMapper;
 import br.unioeste.esi.so_manager_address.services.CityService;
-import br.unioeste.esi.so_manager_address.services.StateService;
+import br.unioeste.esi.so_manager_address.services.FederalUnitService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,19 +20,19 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CityController {
     private final CityService cityService;
-    private final StateService stateService;
+    private final FederalUnitService federalUnitService;
 
     @GetMapping
-    public ResponseEntity<List<CityDTO>> findAll() {
-        List<CityDTO> cities = cityService.findAll().stream().map(CityMapper::convertEntityToDTO).toList();
+    public ResponseEntity<List<CityDTO>> findAll(CityFiltersDTO filters) {
+        List<CityDTO> cities = cityService.findAll(filters).stream().map(CityMapper::convertEntityToDTO).toList();
 
         return ResponseEntity.ok(cities);
     }
 
     @PostMapping
     public ResponseEntity<CityDTO> create(@RequestBody CityDTO form, UriComponentsBuilder uriBuilder) {
-        State state = stateService.findById(form.getState().getAbbreviation());
-        City city = cityService.create(form, state);
+        FederalUnit federalUnit = this.federalUnitService.findByAbbreviation(form.getFederalUnit().getAbbreviation());
+        City city = cityService.create(form, federalUnit);
 
         URI uri = cityService.createURI(uriBuilder, city);
 

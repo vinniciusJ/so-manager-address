@@ -1,6 +1,7 @@
 package br.unioeste.esi.so_manager_address.controllers;
 
 import br.unioeste.esi.so_manager_address.domains.dto.NeighborhoodDTO;
+import br.unioeste.esi.so_manager_address.domains.dto.filters.NeighborhoodFiltersDTO;
 import br.unioeste.esi.so_manager_address.domains.entity.Neighborhood;
 import br.unioeste.esi.so_manager_address.mappers.NeighborhoodMapper;
 import br.unioeste.esi.so_manager_address.services.NeighborhoodService;
@@ -19,8 +20,8 @@ public class NeighborhoodController {
     private final NeighborhoodService neighborhoodService;
 
     @GetMapping
-    public ResponseEntity<List<NeighborhoodDTO>> findAll(){
-        List<NeighborhoodDTO> neighborhoods = neighborhoodService.findAll().stream().map(NeighborhoodMapper::convertEntityToDTO).toList();
+    public ResponseEntity<List<NeighborhoodDTO>> findAll(NeighborhoodFiltersDTO filters){
+        List<NeighborhoodDTO> neighborhoods = neighborhoodService.findAll(filters).stream().map(NeighborhoodMapper::convertEntityToDTO).toList();
 
         return ResponseEntity.ok(neighborhoods);
     }

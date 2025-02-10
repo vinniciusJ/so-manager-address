@@ -1,6 +1,7 @@
 package br.unioeste.esi.so_manager_address.controllers;
 
 import br.unioeste.esi.so_manager_address.domains.dto.LocationDTO;
+import br.unioeste.esi.so_manager_address.domains.dto.filters.LocationFiltersDTO;
 import br.unioeste.esi.so_manager_address.domains.entity.Location;
 import br.unioeste.esi.so_manager_address.domains.entity.LocationType;
 import br.unioeste.esi.so_manager_address.mappers.LocationMapper;
@@ -22,8 +23,8 @@ public class LocationController {
     private final LocationTypeService locationTypeService;
 
     @GetMapping
-    public ResponseEntity<List<LocationDTO>> findAll() {
-        List<LocationDTO> locations = locationService.findAll().stream().map(LocationMapper::convertEntityToDTO).toList();
+    public ResponseEntity<List<LocationDTO>> findAll(LocationFiltersDTO filters) {
+        List<LocationDTO> locations = locationService.findAll(filters).stream().map(LocationMapper::convertEntityToDTO).toList();
 
         return ResponseEntity.ok(locations);
     }

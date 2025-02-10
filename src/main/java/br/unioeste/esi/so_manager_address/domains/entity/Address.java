@@ -31,6 +31,6 @@ public class Address {
 
     @Override
     public String toString() {
-        return String.format("%s - %s, %s - %s, %s", location.getName(), neighborhood.getName(), city.getName(), city.getState().getAbbreviation(), zipCode);
+        return String.format("%s - %s, %s - %s, %s", location.getName(), neighborhood.getName(), city.getName(), city.getFederalUnit().getAbbreviation(), zipCode);
     }
 }
