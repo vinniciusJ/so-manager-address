@@ -73,4 +73,11 @@ public class AddressController {
 
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/external")
+    public ResponseEntity<AddressDTO> findExternalAddressByZipCode(@RequestParam String zipCode){
+        AddressDTO address = addressService.findExternalAddressByZipCode(zipCode);
+
+        return ResponseEntity.ok(address);
+    }
 }

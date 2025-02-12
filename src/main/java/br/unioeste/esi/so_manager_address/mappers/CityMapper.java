@@ -21,4 +21,8 @@ public class CityMapper {
     public static City convertDTOToEntity(CityDTO cityDTO){
         return City.builder().name(cityDTO.getName()).build();
     }
+
+    public static CityDTO convertExternalAddressToDTO(String name, FederalUnitDTO federalUnit){
+        return CityDTO.builder().name(name).federalUnit(federalUnit).build();
+    }
 }

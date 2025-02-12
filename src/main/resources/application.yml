@@ -10,11 +10,6 @@ spring:
     password: esi
     driver-class-name: org.postgresql.Driver
 
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-
 eureka:
   client:
     service-url:

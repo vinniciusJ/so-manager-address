@@ -28,4 +28,8 @@ public class LocationMapper {
                 .locationType(locationType)
                 .build();
     }
+
+    public static LocationDTO convertExternalAddressToDTO(String name){
+        return LocationDTO.builder().name(name).build();
+    }
 }

@@ -20,4 +20,8 @@ public class NeighborhoodMapper {
                 .name(neighborhood.getName())
                 .build();
     }
+
+    public static NeighborhoodDTO convertExternalAddressToDTO(String name){
+        return NeighborhoodDTO.builder().name(name).build();
+    }
 }

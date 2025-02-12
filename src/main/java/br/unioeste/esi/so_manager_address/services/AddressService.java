@@ -1,6 +1,7 @@
 package br.unioeste.esi.so_manager_address.services;
 
 import br.unioeste.esi.so_manager_address.domains.dto.AddressDTO;
+import br.unioeste.esi.so_manager_address.domains.dto.external.ExternalAddressDTO;
 import br.unioeste.esi.so_manager_address.domains.dto.filters.AddressFiltersDTO;
 import br.unioeste.esi.so_manager_address.domains.entity.Address;
 import br.unioeste.esi.so_manager_address.domains.entity.City;
@@ -16,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
@@ -25,6 +27,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AddressService {
     private final AddressRepository addressRepository;
+
+    private final WebClient webClient;
 
     public Address create(AddressDTO form, Neighborhood neighborhood, Location location, City city){
         Address address = AddressMapper.convertDTOToEntity(form);
@@ -54,6 +58,21 @@ public class AddressService {
 
     public List<Address> findAll(AddressFiltersDTO filters){
         return addressRepository.findAll(generateSpecification(filters));
+    }
+
+    public AddressDTO findExternalAddressByZipCode(String zipCode){
+        ExternalAddressDTO externalAddress = webClient
+                .get()
+                .uri("https://viacep.com.br/ws/" + zipCode + "/json")
+                .retrieve()
+                .bodyToMono(ExternalAddressDTO.class)
+                .block();
+
+        if(externalAddress == null){
+            throw new AddressException(HttpStatus.NOT_FOUND, "Endereço externo não encontrado com CEP " + zipCode);
+        }
+
+        return AddressMapper.convertExternalAddressDTO(externalAddress);
     }
 
     public URI createURI(UriComponentsBuilder builder, Address address){
