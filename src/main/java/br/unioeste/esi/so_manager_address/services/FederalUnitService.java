@@ -1,13 +1,15 @@
 package br.unioeste.esi.so_manager_address.services;
 
-import br.unioeste.esi.so_manager_address.domains.dto.FederalUnitDTO;
-import br.unioeste.esi.so_manager_address.domains.dto.filters.FederalUnitFiltersDTO;
+
 import br.unioeste.esi.so_manager_address.exceptions.AddressException;
-import br.unioeste.esi.so_manager_address.mappers.FederalUnitMapper;
 import br.unioeste.esi.so_manager_address.repositories.FederalUnitRepository;
 import br.unioeste.esi.so_manager_address.specifications.BaseSpecification;
 import br.unioeste.esi.so_manager_address.specifications.Search;
 import br.unioeste.esi.so_manager_address.specifications.SpecificationUtils;
+import br.unioste.esi.so_manager.address_lib.domains.dtos.FederalUnitDTO;
+import br.unioste.esi.so_manager.address_lib.domains.dtos.filters.FederalUnitFiltersDTO;
+import br.unioste.esi.so_manager.address_lib.domains.entities.FederalUnit;
+import br.unioste.esi.so_manager.address_lib.mappers.FederalUnitMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
@@ -22,16 +24,16 @@ import java.util.List;
 public class FederalUnitService {
     private final FederalUnitRepository federalUnitRepository;
 
-    public List<br.unioeste.esi.so_manager_address.domains.entity.FederalUnit> findAll(FederalUnitFiltersDTO filters){
+    public List<FederalUnit> findAll(FederalUnitFiltersDTO filters){
         return federalUnitRepository.findAll(generateSpecification(filters));
     }
 
-    public br.unioeste.esi.so_manager_address.domains.entity.FederalUnit create(FederalUnitDTO form){
+    public FederalUnit create(FederalUnitDTO form){
         return federalUnitRepository.save(FederalUnitMapper.convertDTOToEntity(form));
     }
 
-    public br.unioeste.esi.so_manager_address.domains.entity.FederalUnit update(String abbreviation, FederalUnitDTO form){
-        br.unioeste.esi.so_manager_address.domains.entity.FederalUnit federalUnit = findByAbbreviation(abbreviation);
+    public FederalUnit update(String abbreviation, FederalUnitDTO form){
+        FederalUnit federalUnit = findByAbbreviation(abbreviation);
 
         federalUnit.setName(form.getName());
         federalUnit.setAbbreviation(form.getAbbreviation());
@@ -40,27 +42,27 @@ public class FederalUnitService {
     }
 
     public void delete(String abbreviation){
-        br.unioeste.esi.so_manager_address.domains.entity.FederalUnit federalUnit = findByAbbreviation(abbreviation);
+        FederalUnit federalUnit = findByAbbreviation(abbreviation);
 
         federalUnitRepository.delete(federalUnit);
     }
 
-    public URI createURI(UriComponentsBuilder uriBuilder, br.unioeste.esi.so_manager_address.domains.entity.FederalUnit federalUnit){
+    public URI createURI(UriComponentsBuilder uriBuilder, FederalUnit federalUnit){
         return uriBuilder.path("/state/{abbreviation}").buildAndExpand(federalUnit.getAbbreviation()).toUri();
     }
 
-    public br.unioeste.esi.so_manager_address.domains.entity.FederalUnit findByAbbreviation(String abbreviation){
+    public FederalUnit findByAbbreviation(String abbreviation){
         return federalUnitRepository.findByAbbreviation(abbreviation).orElseThrow(
                 () -> new AddressException(HttpStatus.NOT_FOUND, "UF não encontrado para sigla " + abbreviation)
         );
     }
 
-    private Specification<br.unioeste.esi.so_manager_address.domains.entity.FederalUnit> generateSpecification(FederalUnitFiltersDTO filters){
+    private Specification<FederalUnit> generateSpecification(FederalUnitFiltersDTO filters){
         Search<String> abbreviationCriteria = SpecificationUtils.generateEqualsCriteria("abbreviation", filters.name());
         Search<String> nameCriteria = SpecificationUtils.generateLeftLikeCriteria("name", filters.name());
 
-        Specification<br.unioeste.esi.so_manager_address.domains.entity.FederalUnit> abbreviationSpecification = new BaseSpecification<>(abbreviationCriteria);
-        Specification<br.unioeste.esi.so_manager_address.domains.entity.FederalUnit> nameSpecification = new BaseSpecification<>(nameCriteria);
+        Specification<FederalUnit> abbreviationSpecification = new BaseSpecification<>(abbreviationCriteria);
+        Specification<FederalUnit> nameSpecification = new BaseSpecification<>(nameCriteria);
 
         return Specification.where(abbreviationSpecification.and(nameSpecification));
     }

@@ -14,12 +14,15 @@ java {
 }
 
 repositories {
+	mavenLocal()
 	mavenCentral()
 }
 
 extra["springCloudVersion"] = "2024.0.0"
 
 dependencies {
+	implementation("br.unioste.esi.so-manager:address-library:1.0-SNAPSHOT")
+
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")

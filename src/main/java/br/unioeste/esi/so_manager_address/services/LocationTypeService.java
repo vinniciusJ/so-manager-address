@@ -1,14 +1,14 @@
 package br.unioeste.esi.so_manager_address.services;
 
-import br.unioeste.esi.so_manager_address.domains.dto.LocationTypeDTO;
-import br.unioeste.esi.so_manager_address.domains.dto.filters.LocationTypeFiltersDTO;
-import br.unioeste.esi.so_manager_address.domains.entity.LocationType;
 import br.unioeste.esi.so_manager_address.exceptions.AddressException;
-import br.unioeste.esi.so_manager_address.mappers.LocationTypeMapper;
 import br.unioeste.esi.so_manager_address.repositories.LocationTypeRepository;
 import br.unioeste.esi.so_manager_address.specifications.BaseSpecification;
 import br.unioeste.esi.so_manager_address.specifications.Search;
 import br.unioeste.esi.so_manager_address.specifications.SpecificationUtils;
+import br.unioste.esi.so_manager.address_lib.domains.dtos.LocationTypeDTO;
+import br.unioste.esi.so_manager.address_lib.domains.dtos.filters.LocationTypeFiltersDTO;
+import br.unioste.esi.so_manager.address_lib.domains.entities.LocationType;
+import br.unioste.esi.so_manager.address_lib.mappers.LocationTypeMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;

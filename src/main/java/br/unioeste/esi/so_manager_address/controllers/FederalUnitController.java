@@ -1,10 +1,10 @@
 package br.unioeste.esi.so_manager_address.controllers;
 
-import br.unioeste.esi.so_manager_address.domains.dto.FederalUnitDTO;
-import br.unioeste.esi.so_manager_address.domains.dto.filters.FederalUnitFiltersDTO;
-import br.unioeste.esi.so_manager_address.domains.entity.FederalUnit;
-import br.unioeste.esi.so_manager_address.mappers.FederalUnitMapper;
 import br.unioeste.esi.so_manager_address.services.FederalUnitService;
+import br.unioste.esi.so_manager.address_lib.domains.dtos.FederalUnitDTO;
+import br.unioste.esi.so_manager.address_lib.domains.dtos.filters.FederalUnitFiltersDTO;
+import br.unioste.esi.so_manager.address_lib.domains.entities.FederalUnit;
+import br.unioste.esi.so_manager.address_lib.mappers.FederalUnitMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

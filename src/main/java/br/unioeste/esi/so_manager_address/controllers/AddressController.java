@@ -1,16 +1,16 @@
 package br.unioeste.esi.so_manager_address.controllers;
 
-import br.unioeste.esi.so_manager_address.domains.dto.AddressDTO;
-import br.unioeste.esi.so_manager_address.domains.dto.filters.AddressFiltersDTO;
-import br.unioeste.esi.so_manager_address.domains.entity.Address;
-import br.unioeste.esi.so_manager_address.domains.entity.City;
-import br.unioeste.esi.so_manager_address.domains.entity.Location;
-import br.unioeste.esi.so_manager_address.domains.entity.Neighborhood;
-import br.unioeste.esi.so_manager_address.mappers.AddressMapper;
 import br.unioeste.esi.so_manager_address.services.AddressService;
 import br.unioeste.esi.so_manager_address.services.CityService;
 import br.unioeste.esi.so_manager_address.services.LocationService;
 import br.unioeste.esi.so_manager_address.services.NeighborhoodService;
+import br.unioste.esi.so_manager.address_lib.domains.dtos.AddressDTO;
+import br.unioste.esi.so_manager.address_lib.domains.dtos.filters.AddressFiltersDTO;
+import br.unioste.esi.so_manager.address_lib.domains.entities.Address;
+import br.unioste.esi.so_manager.address_lib.domains.entities.City;
+import br.unioste.esi.so_manager.address_lib.domains.entities.Location;
+import br.unioste.esi.so_manager.address_lib.domains.entities.Neighborhood;
+import br.unioste.esi.so_manager.address_lib.mappers.AddressMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

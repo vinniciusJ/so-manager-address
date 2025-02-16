@@ -1,16 +1,16 @@
 package br.unioeste.esi.so_manager_address.services;
 
-import br.unioeste.esi.so_manager_address.domains.dto.CityDTO;
-import br.unioeste.esi.so_manager_address.domains.dto.filters.CityFiltersDTO;
-import br.unioeste.esi.so_manager_address.domains.entity.City;
-import br.unioeste.esi.so_manager_address.domains.entity.FederalUnit;
 import br.unioeste.esi.so_manager_address.exceptions.AddressException;
-import br.unioeste.esi.so_manager_address.mappers.CityMapper;
-import br.unioeste.esi.so_manager_address.mappers.FederalUnitMapper;
 import br.unioeste.esi.so_manager_address.repositories.CityRepository;
 import br.unioeste.esi.so_manager_address.specifications.BaseSpecification;
 import br.unioeste.esi.so_manager_address.specifications.Search;
 import br.unioeste.esi.so_manager_address.specifications.SpecificationUtils;
+import br.unioste.esi.so_manager.address_lib.domains.dtos.CityDTO;
+import br.unioste.esi.so_manager.address_lib.domains.dtos.filters.CityFiltersDTO;
+import br.unioste.esi.so_manager.address_lib.domains.entities.City;
+import br.unioste.esi.so_manager.address_lib.domains.entities.FederalUnit;
+import br.unioste.esi.so_manager.address_lib.mappers.CityMapper;
+import br.unioste.esi.so_manager.address_lib.mappers.FederalUnitMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;

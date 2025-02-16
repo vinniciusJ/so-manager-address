@@ -1,12 +1,12 @@
 package br.unioeste.esi.so_manager_address.controllers;
 
-import br.unioeste.esi.so_manager_address.domains.dto.CityDTO;
-import br.unioeste.esi.so_manager_address.domains.dto.filters.CityFiltersDTO;
-import br.unioeste.esi.so_manager_address.domains.entity.City;
-import br.unioeste.esi.so_manager_address.domains.entity.FederalUnit;
-import br.unioeste.esi.so_manager_address.mappers.CityMapper;
 import br.unioeste.esi.so_manager_address.services.CityService;
 import br.unioeste.esi.so_manager_address.services.FederalUnitService;
+import br.unioste.esi.so_manager.address_lib.domains.dtos.CityDTO;
+import br.unioste.esi.so_manager.address_lib.domains.dtos.filters.CityFiltersDTO;
+import br.unioste.esi.so_manager.address_lib.domains.entities.City;
+import br.unioste.esi.so_manager.address_lib.domains.entities.FederalUnit;
+import br.unioste.esi.so_manager.address_lib.mappers.CityMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
